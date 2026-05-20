@@ -1,0 +1,323 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.glow1 {
+  position: absolute; top: -200px; left: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(99,179,237,0.07) 0%, transparent 65%);
+}
+.glow2 {
+  position: absolute; bottom: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 65%);
+}
+.grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* Hero */
+.hero {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 72px 24px 40px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(99,179,237,0.08);
+  border: 1px solid rgba(99,179,237,0.2);
+  color: var(--primary);
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.1em; padding: 6px 16px;
+  border-radius: 100px; margin-bottom: 24px;
+  text-transform: uppercase;
+  animation: fadeDown 0.5s ease both;
+}
+.dot {
+  width: 6px; height: 6px; background: var(--primary);
+  border-radius: 50%; animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800; line-height: 1.06; letter-spacing: -0.02em;
+  color: var(--text-1); margin-bottom: 18px;
+  animation: fadeDown 0.5s 0.08s ease both;
+}
+.titleAccent {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.subtitle {
+  color: var(--text-2); font-size: clamp(0.95rem, 2vw, 1.1rem);
+  max-width: 560px; margin: 0 auto; line-height: 1.7;
+  animation: fadeDown 0.5s 0.16s ease both;
+}
+
+/* Main */
+.main {
+  position: relative; z-index: 1;
+  padding: 0 24px 60px;
+  max-width: 760px; margin: 0 auto; width: 100%;
+  display: flex; flex-direction: column; gap: 24px;
+}
+
+/* Bank card */
+.bankCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+.bankTitle {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
+  color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+.bankSubjects { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.bankSubject {
+  display: flex; align-items: center; gap: 12px;
+}
+.bankSubjectIcon { font-size: 1.3rem; width: 28px; text-align: center; flex-shrink: 0; }
+.bankSubjectInfo { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.bankSubjectName { font-size: 0.82rem; font-weight: 600; color: var(--text-2); text-transform: capitalize; }
+.bankBar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+.bankBarFill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 100px; transition: width 0.8s ease; }
+.bankSubjectNums { display: flex; align-items: baseline; gap: 2px; flex-shrink: 0; }
+.bankCount { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--primary); }
+.bankNeeded { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-3); }
+.bankHint {
+  font-size: 0.78rem; color: var(--text-3);
+  padding-top: 14px; border-top: 1px solid var(--border);
+}
+.bankHint code {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px;
+  color: var(--accent);
+}
+
+/* Start card */
+.startSection { animation: fadeUp 0.5s 0.28s ease both; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+  opacity: 0; transition: opacity 0.25s;
+}
+.cardHovered { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); border-color: rgba(99,179,237,0.25); }
+.cardHovered::before { opacity: 1; }
+
+.cardTop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.cardIcon { font-size: 2.2rem; }
+.cardMeta { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-3); }
+.cardMetaDot { color: var(--text-3); }
+.cardTitle { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+.cardDesc { color: var(--text-2); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+
+.subjectPills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.pill {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 0.82rem; color: var(--text-2);
+}
+.pillCount {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  background: var(--primary-glow); color: var(--primary);
+  border: 1px solid var(--border-accent);
+  padding: 1px 7px; border-radius: 100px;
+}
+
+.marking {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 0.8rem;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+.markingCorrect { color: var(--success); font-weight: 600; }
+.markingWrong { color: var(--danger); font-weight: 600; }
+.markingSkip { color: var(--text-3); }
+.markingDot { color: var(--text-3); }
+
+.btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border: none; border-radius: var(--radius);
+  color: #fff; font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* Info row */
+.infoRow {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  animation: fadeUp 0.5s 0.36s ease both;
+}
+.infoItem { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-3); }
+.infoItem svg { color: var(--text-3); flex-shrink: 0; }
+
+/* Footer */
+.footer {
+  position: relative; z-index: 1; text-align: center;
+  padding: 24px; font-size: 0.78rem; color: var(--text-3);
+  border-top: 1px solid var(--border); margin-top: auto;
+}
+
+@keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero { padding: 60px 20px 32px; }
+  .title { font-size: clamp(2.2rem, 5.5vw, 3.2rem); }
+  .subtitle { font-size: clamp(0.9rem, 1.8vw, 1rem); padding: 0 12px; }
+  .main { padding: 0 20px 48px; gap: 20px; }
+  .bankCard { padding: 20px; }
+  .card { padding: 24px; }
+  .cardTop { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cardMeta { gap: 4px; font-size: 0.7rem; }
+  .cardTitle { font-size: 1.4rem; }
+  .cardDesc { font-size: 0.85rem; }
+  .subjectPills { gap: 6px; }
+  .pill { padding: 5px 12px; font-size: 0.78rem; }
+  .marking { gap: 8px; font-size: 0.75rem; padding: 10px 14px; margin-bottom: 20px; }
+  .btn { padding: 12px 18px; font-size: 0.95rem; min-height: 44px; }
+  .infoRow { gap: 16px; padding-top: 16px; }
+  .infoItem { font-size: 0.75rem; }
+  .footer { padding: 20px; font-size: 0.73rem; }
+}
+
+@media (max-width: 600px) {
+  .page { overflow-x: hidden; }
+  .hero { padding: 48px 16px 24px; }
+  .badge { font-size: 0.65rem; padding: 5px 12px; margin-bottom: 16px; }
+  .title { font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; }
+  .subtitle { font-size: clamp(0.85rem, 1.5vw, 0.95rem); line-height: 1.6; padding: 0 8px; }
+  
+  .main { padding: 0 16px 40px; gap: 16px; }
+  .bankCard { padding: 16px; }
+  .bankTitle { font-size: 0.75rem; margin-bottom: 14px; }
+  .bankSubject { gap: 10px; flex-wrap: wrap; }
+  .bankSubjectIcon { font-size: 1.2rem; }
+  .bankSubjectName { font-size: 0.78rem; }
+  .bankCount { font-size: 0.9rem; }
+  .bankNeeded { font-size: 0.65rem; }
+  .bankBar { height: 3px; }
+  .bankHint { font-size: 0.73rem; padding-top: 12px; }
+  
+  .card { padding: 20px; border-radius: var(--radius-lg); }
+  .cardTop { margin-bottom: 14px; }
+  .cardIcon { font-size: 2rem; }
+  .cardMeta { font-size: 0.68rem; }
+  .cardTitle { font-size: 1.25rem; margin-bottom: 6px; }
+  .cardDesc { font-size: 0.8rem; line-height: 1.5; margin-bottom: 16px; }
+  
+  .subjectPills { gap: 6px; margin-bottom: 14px; }
+  .pill { padding: 5px 11px; font-size: 0.75rem; gap: 5px; }
+  .pillCount { font-size: 0.65rem; padding: 0 5px; }
+  
+  .marking { padding: 10px 12px; gap: 6px; font-size: 0.7rem; margin-bottom: 16px; flex-wrap: wrap; }
+  .markingCorrect, .markingWrong { font-size: 0.72rem; }
+  
+  .btn { 
+    padding: 11px 16px; 
+    font-size: 0.9rem; 
+    font-weight: 700; 
+    min-height: 44px;
+    letter-spacing: 0;
+  }
+  .btn:active { transform: translateY(0); opacity: 0.85; }
+  
+  .infoRow { 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 12px; 
+    padding-top: 14px; 
+  }
+  .infoItem { 
+    font-size: 0.7rem; 
+    gap: 6px; 
+    text-align: center;
+    flex-direction: column;
+  }
+  .infoItem svg { font-size: 1.2rem; }
+  
+  .footer { padding: 16px; font-size: 0.7rem; margin-top: auto; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 40px 14px 20px; }
+  .badge { font-size: 0.6rem; padding: 4px 10px; margin-bottom: 12px; }
+  .dot { width: 5px; height: 5px; }
+  .title { font-size: clamp(1.75rem, 4.5vw, 2.4rem); }
+  .subtitle { font-size: clamp(0.8rem, 1.2vw, 0.9rem); }
+  
+  .main { padding: 0 14px 32px; gap: 14px; }
+  .bankCard { padding: 14px; }
+  .bankTitle { font-size: 0.7rem; margin-bottom: 12px; gap: 6px; }
+  .bankSubjects { gap: 10px; margin-bottom: 12px; }
+  .bankSubject { gap: 8px; }
+  .bankSubjectIcon { width: 24px; font-size: 1.1rem; }
+  .bankSubjectInfo { gap: 3px; }
+  .bankSubjectName { font-size: 0.75rem; }
+  .bankSubjectNums { font-size: 0.85rem; }
+  .bankBar { height: 2.5px; }
+  .bankHint { font-size: 0.68rem; padding-top: 10px; }
+  .bankHint code { font-size: 0.7rem; padding: 0 4px; }
+  
+  .card { padding: 18px; border-radius: var(--radius-lg); }
+  .cardTop { margin-bottom: 12px; }
+  .cardIcon { font-size: 1.8rem; }
+  .cardMeta { font-size: 0.63rem; gap: 3px; }
+  .cardTitle { font-size: 1.15rem; margin-bottom: 5px; }
+  .cardDesc { font-size: 0.75rem; line-height: 1.4; margin-bottom: 12px; }
+  
+  .subjectPills { gap: 5px; margin-bottom: 12px; }
+  .pill { padding: 4px 10px; font-size: 0.7rem; gap: 4px; }
+  .pill span:last-child { display: none; }
+  
+  .marking { padding: 8px 10px; gap: 5px; font-size: 0.65rem; margin-bottom: 14px; }
+  
+  .btn { padding: 10px 14px; font-size: 0.85rem; font-weight: 600; }
+  
+  .infoRow { padding-top: 12px; gap: 10px; }
+  .infoItem { font-size: 0.65rem; gap: 5px; }
+  
+  .footer { padding: 14px; font-size: 0.65rem; }
+}
+
+/* Landscape mode optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding: 24px 16px 20px; }
+  .title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 8px; }
+  .subtitle { font-size: 0.8rem; margin-bottom: 8px; }
+  .main { padding: 0 16px 20px; gap: 16px; }
+  .card { padding: 18px; }
+}

@@ -1,0 +1,428 @@
+.page {
+  min-height: 100vh;
+  padding: 40px 20px 60px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.bg {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+}
+.glow {
+  position: absolute; top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(99,179,237,0.05) 0%, transparent 70%);
+}
+.container {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 700px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.back {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: none; border: none;
+  color: var(--text-2); font-size: 0.88rem;
+  padding: 8px 0; transition: color 0.2s;
+}
+.back:hover { color: var(--primary); }
+
+.candidateChip {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 0.82rem; color: var(--text-2);
+}
+.candidateChip svg { color: var(--primary); }
+.chipDot { color: var(--text-3); }
+.chipRoll { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-3); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.cardTitle {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(99,179,237,0.04) 0%, transparent 100%);
+}
+.cardTitle h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--text-1);
+}
+.testLabel {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--primary);
+  background: rgba(99,179,237,0.1);
+  border: 1px solid rgba(99,179,237,0.2);
+  padding: 4px 12px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+.sections { padding: 28px 32px; display: flex; flex-direction: column; gap: 28px; }
+
+.section {}
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 0.9rem; font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.list li {
+  position: relative; padding-left: 18px;
+  font-size: 0.9rem; color: var(--text-2); line-height: 1.6;
+}
+.list li::before {
+  content: '';
+  position: absolute; left: 0; top: 9px;
+  width: 5px; height: 5px;
+  border-radius: 50%; background: var(--border-accent);
+}
+.list li strong { color: var(--text-1); font-weight: 600; }
+
+.legend { display: flex; flex-direction: column; gap: 10px; }
+.legendItem {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.legendDot {
+  width: 14px; height: 14px;
+  border-radius: 50%; flex-shrink: 0; margin-top: 3px;
+}
+.legendLabel {
+  font-size: 0.88rem; font-weight: 600; color: var(--text-1);
+  display: block; margin-bottom: 2px;
+}
+.legendDesc {
+  font-size: 0.8rem; color: var(--text-3); display: block;
+}
+
+.warning {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--warn-bg);
+  border: 1px solid rgba(251,191,36,0.2);
+  border-radius: var(--radius); padding: 14px 16px;
+  font-size: 0.88rem; color: var(--warn); line-height: 1.5;
+}
+.warning svg { flex-shrink: 0; margin-top: 1px; }
+
+.footer {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  padding: 24px 32px;
+  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,0.01);
+}
+.footerInfo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-3);
+}
+.footerDot { color: var(--border-accent); }
+
+.startBtn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, var(--success), #059669);
+  border: none; border-radius: var(--radius);
+  color: #fff; font-family: var(--font-display);
+  font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.startBtn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tablet - 768px */
+@media (max-width: 768px) {
+  .page { 
+    padding: 32px 18px 48px;
+    align-items: center;
+  }
+  .glow { width: 500px; height: 350px; }
+  .container { max-width: 100%; }
+  .header { margin-bottom: 20px; }
+  .back { font-size: 0.82rem; padding: 6px 0; }
+  .candidateChip { 
+    font-size: 0.78rem; 
+    padding: 5px 12px;
+  }
+  .card { border-radius: var(--radius-lg); }
+  .cardTitle { 
+    padding: 24px;
+    gap: 10px;
+  }
+  .cardTitle h1 { font-size: 1.4rem; }
+  .testLabel { font-size: 0.7rem; padding: 3px 10px; }
+  .sections { 
+    padding: 24px;
+    gap: 20px;
+  }
+  .sectionTitle { font-size: 0.85rem; margin-bottom: 12px; }
+  .list { gap: 8px; }
+  .list li { 
+    font-size: 0.85rem; 
+    padding-left: 16px;
+    line-height: 1.5;
+  }
+  .list li::before { top: 7px; width: 4px; height: 4px; }
+  .legendItem { gap: 10px; }
+  .legendDot { width: 12px; height: 12px; }
+  .legendLabel { font-size: 0.82rem; }
+  .legendDesc { font-size: 0.75rem; }
+  .warning { 
+    padding: 12px 14px; 
+    font-size: 0.82rem;
+  }
+  .footer { 
+    padding: 20px 24px;
+    gap: 12px;
+  }
+  .footerInfo { font-size: 0.75rem; gap: 8px; }
+  .startBtn { 
+    padding: 11px 24px; 
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile - 600px */
+@media (max-width: 600px) {
+  .page { 
+    padding: 24px 14px 40px;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+  .glow { 
+    width: 400px; 
+    height: 300px;
+    opacity: 0.4;
+  }
+  .container { animation: fadeUp 0.4s ease both; }
+  .header { 
+    margin-bottom: 18px;
+    gap: 10px;
+  }
+  .back { 
+    font-size: 0.75rem; 
+    padding: 6px 0;
+    display: inline-flex;
+  }
+  .candidateChip { 
+    font-size: 0.73rem; 
+    padding: 5px 11px;
+    border-radius: 100px;
+  }
+  .card { 
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .cardTitle { 
+    padding: 20px 16px 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cardTitle h1 { 
+    font-size: clamp(1.2rem, 2vw, 1.3rem);
+    line-height: 1.1;
+  }
+  .testLabel { 
+    font-size: 0.65rem; 
+    padding: 3px 9px;
+  }
+  .sections { 
+    padding: 20px 16px;
+    gap: 18px;
+  }
+  .sectionTitle { 
+    font-size: 0.8rem; 
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+  }
+  .list { gap: 7px; }
+  .list li { 
+    font-size: 0.8rem; 
+    padding-left: 15px;
+    line-height: 1.45;
+  }
+  .list li::before { 
+    top: 6px; 
+    width: 3.5px; 
+    height: 3.5px;
+  }
+  .legend { gap: 8px; }
+  .legendItem { gap: 9px; }
+  .legendDot { 
+    width: 11px; 
+    height: 11px;
+    margin-top: 2px;
+  }
+  .legendLabel { 
+    font-size: 0.78rem;
+    margin-bottom: 1px;
+  }
+  .legendDesc { 
+    font-size: 0.7rem;
+  }
+  .warning { 
+    padding: 11px 12px; 
+    font-size: 0.77rem;
+    gap: 10px;
+    border-radius: var(--radius);
+    line-height: 1.4;
+  }
+  .warning svg { width: 16px; height: 16px; }
+  .footer { 
+    padding: 16px;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .footerInfo { 
+    font-size: 0.7rem; 
+    gap: 6px;
+    justify-content: center;
+  }
+  .startBtn { 
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    min-height: 40px;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+/* Small mobile - 480px */
+@media (max-width: 480px) {
+  .page { 
+    padding: 18px 12px 32px;
+  }
+  .glow { 
+    width: 350px; 
+    height: 250px;
+    opacity: 0.3;
+  }
+  .header { 
+    margin-bottom: 14px;
+  }
+  .back { 
+    font-size: 0.7rem;
+    gap: 5px;
+  }
+  .back svg { width: 13px; height: 13px; }
+  .candidateChip { 
+    font-size: 0.68rem;
+    padding: 4px 9px;
+    gap: 5px;
+  }
+  .candidateChip svg { width: 13px; height: 13px; }
+  .card { border-radius: var(--radius); }
+  .cardTitle { 
+    padding: 16px 12px 12px;
+  }
+  .cardTitle h1 { 
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  }
+  .testLabel { 
+    font-size: 0.6rem; 
+    padding: 2px 7px;
+  }
+  .sections { 
+    padding: 16px 12px;
+    gap: 14px;
+  }
+  .sectionTitle { 
+    font-size: 0.73rem;
+    margin-bottom: 8px;
+  }
+  .list { gap: 6px; }
+  .list li { 
+    font-size: 0.75rem;
+    padding-left: 14px;
+    line-height: 1.35;
+  }
+  .list li::before { top: 5px; }
+  .legend { gap: 6px; }
+  .legendItem { gap: 8px; }
+  .legendDot { width: 10px; height: 10px; }
+  .legendLabel { font-size: 0.73rem; }
+  .legendDesc { font-size: 0.65rem; }
+  .warning { 
+    padding: 10px 10px; 
+    font-size: 0.7rem;
+    gap: 8px;
+  }
+  .warning svg { width: 14px; height: 14px; }
+  .footer { 
+    padding: 12px;
+    gap: 8px;
+  }
+  .footerInfo { font-size: 0.63rem; }
+  .startBtn { 
+    padding: 9px 12px;
+    font-size: 0.8rem;
+    min-height: 36px;
+  }
+}
+
+/* Extra small - 360px */
+@media (max-width: 360px) {
+  .page { padding: 12px 10px 24px; }
+  .glow { width: 300px; height: 200px; }
+  .back { font-size: 0.65rem; }
+  .candidateChip { font-size: 0.63rem; padding: 3px 7px; }
+  .cardTitle { padding: 12px 10px 8px; }
+  .cardTitle h1 { font-size: 1rem; }
+  .testLabel { font-size: 0.55rem; }
+  .sections { padding: 12px 10px; gap: 10px; }
+  .sectionTitle { font-size: 0.67rem; }
+  .list li { font-size: 0.7rem; }
+  .legendLabel { font-size: 0.67rem; }
+  .legendDesc { font-size: 0.6rem; }
+  .warning { font-size: 0.65rem; padding: 8px 8px; }
+  .footer { padding: 10px; gap: 6px; }
+  .startBtn { padding: 8px 10px; font-size: 0.75rem; }
+}
+
+/* Landscape mode */
+@media (max-height: 600px) and (orientation: landscape) {
+  .page { 
+    padding: 16px 18px 24px;
+    align-items: center;
+    min-height: auto;
+  }
+  .glow { width: 400px; height: 250px; }
+  .cardTitle h1 { font-size: 1.2rem; }
+  .sections { padding: 16px; gap: 12px; }
+  .sectionTitle { font-size: 0.8rem; }
+  .list li { font-size: 0.73rem; }
+  .footer { padding: 12px; gap: 8px; }
+  .startBtn { padding: 8px 14px; font-size: 0.8rem; }
+}
