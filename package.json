@@ -1,0 +1,13 @@
+{
+  "name": "neet-mock-app",
+  "version": "1.0.0",
+  "description": "NEET Mock Exam Application",
+  "private": true,
+  "scripts": {
+    "dev": "cd neet-app2 && npm run dev",
+    "build": "cd neet-app2 && npm run build",
+    "preview": "cd neet-app2 && npm run preview",
+    "lint": "cd neet-app2 && npm run lint",
+    "install-deps": "cd neet-app2 && npm install"
+  }
+}
